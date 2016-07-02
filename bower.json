@@ -1,0 +1,14 @@
+{
+  "name": "sistemadearchivos",
+  "description": "controla el sistema de archivos de colegios",
+  "main": "index.js",
+  "authors": [
+    "Jeison Andres Hurtado"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "dependencies": {
+    "angular": "^1.5.7",
+    "bootstrap": "^3.3.6"
+  }
+}

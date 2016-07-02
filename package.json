@@ -1,0 +1,27 @@
+{
+  "name": "sistemadearchivos",
+  "version": "1.0.0",
+  "description": "controla el sistema de archivos de colegios",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jeison Andres Hurtado",
+  "license": "ISC",
+  "devDependencies": {
+    "connect-history-api-fallback": "^1.2.0",
+    "graceful-fs": "^4.1.4",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^4.1.0",
+    "gulp-if": "^2.0.1",
+    "gulp-jshint": "^2.0.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-stylus": "^2.5.0",
+    "gulp-uglify": "^1.5.4",
+    "gulp-useref": "^3.1.0",
+    "jshint": "^2.9.2",
+    "jshint-stylish": "^2.2.0",
+    "nib": "^1.1.0"
+  }
+}
