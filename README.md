@@ -6,6 +6,6 @@ Instalar en sublime text 3  : EditorConfig
 
 Instalar las dependencias de node: $npm install
 
-Instalar las dependencias de bower: $npm bower
+Instalar las dependencias de bower: $bower install
 
 Ejecutar: $gulp

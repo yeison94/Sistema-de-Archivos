@@ -12,6 +12,20 @@ div.FondoVerde {
 	background-color: #00913f;
 }
 
-div.letrablanca{
+.letrablanca{
 	color: #FFFFFF;
 }
+
+h1.Grande{
+	font-size: 3.5em;
+}
+
+span.letranegra{
+	color: #000000;
+}
+
+span.Iconos{
+	font-size: 50px;
+}
+
+
