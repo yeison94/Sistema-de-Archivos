@@ -5,7 +5,32 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     stylish = require('jshint-stylish'),
     livereload = require('gulp-livereload'),
-    historyApiFallback = require('connect-history-api-fallback');
+    historyApiFallback = require('connect-history-api-fallback'),
+		mongoose = require('mongoose');
+
+var Administrador = require('./app/models/Administrador.js');
+
+		//Coneccion con la BD Administrador
+		mongoose.connect('mongodb://localhost/Administrador', function(err, res){
+			if(err){
+				console.log('Error: Conectando a la BD' + err);
+			}else{
+
+        //DAtos de la persona encarga de administrar
+				var Adm = new Administrador({
+					Nombre : "Jeison",
+					Username : "yeison94",
+					Contrasena : "12345"
+				});
+
+				Adm.save(function(err, Adm){
+					if(err){
+						console.log("No se guardo el usuario Administrador");
+					}
+				})
+
+			}
+		});
 
 //Servidor web
 gulp.task('server', function(){

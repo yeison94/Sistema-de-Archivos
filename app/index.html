@@ -9,17 +9,14 @@
 		<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css">
 		<link rel="stylesheet" href="/stylesheets/style.css">
 
-
-		<!-- Place favicon.ico in the root directory -->
-
 	</head>
-	<body>
+	<body data-ng-app="app">
 		<!--[if lt IE 8]>
 			<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 		<![endif]-->
 
 		<!-- Header -->
-		<div class="container-fluid">
+		<div class="container-fluid" data-ng-controller="Ctrl">
 			<div class="row FondoVerde letrablanca">
 				<div class="col-lg-3 col-xs-12"><img src="/Image/escudo.png" alt="Escudo Colegio" class="grande"></div>
 				<div class="col-lg-9 col-xs-12">
@@ -34,71 +31,28 @@
 					<nav class="navbar navbar-inverse">
 						<div class="container-fluid">
 							<ul class="nav navbar-nav">
-							    <li class="active"><a href="#">Pagina Principal</a></li>
+							  <li><a href="/home">Pagina Principal</a></li>
 								<li><a href="#">Estudiante</a></li>
 								<li><a href="#">Profesor</a></li>
-								<li><a href="#">Administrador</a></li>
+								<li><a href="/login/Administrador">Administrador</a></li>
 							</ul>
 						</div>
 					</nav>
 				</div>
 			</div>
 
-			<!-- Explication -->
+			<!-- Espacio donde se cargaran las vistas -->
 			<div class="row">
-				<div class="col-lg-3 col-lg-offset-1">
-					<p class="text-center lead">
-					<br><br>
-						<span class="glyphicon glyphicon-user Iconos"></span><br><br>
-						<h4 class="text-center">ESTUDIANTE</h4>
-						Aquí podrán tener acceso al material de clase subido por los profesores. También, al terminar la clase, podrán montar sus avances en caso tal de que el profesor lo crea necesario.
-					</p>
-				</div>
-				<div class="col-lg-3">
-					<p class="text-center lead">
-					<br><br>
-						<span class="glyphicon glyphicon-folder-open Iconos"></span><br><br>
-						<h4 class="text-center">PROFESOR</h4>
-						Podrán subir archivos que vayan a ser usados en las clases en sala de computo. También podrán tener acceso a los archivos que sean subidos por los estudiantes.
-					</p>
-				</div>
-				<div class="col-lg-3">
-					<p class="text-center lead">
-					<br><br>
-						<span class="glyphicon glyphicon-cog Iconos"></span><br><br>
-						<h4 class="text-center">ADMINISTRADOR</h4>
-						Pestaña de uso exclusivo del administrador de la página.
-					</p>
-				</div>
+			    <div data-ng-view></div>
 			</div>
-
-			<br>
-		    <br>
-		    <br>
-
-		    <!-- Parallax -->
-		    <div class="row">
-		    	<div class="col-lg-13">
-		    		<img  src="Image/Fondo2.jpg" alt="Fondo2" WIDTH=1500 HEIGHT=350>
-		    	</div>
-		    </div>
-
-		    <!-- Final -->
-		    <div class="row FondoVerde letrablanca center">
-			    <footer class="page-footer teal">
-				    <p class="white-text text-center">
-				    	<a  href="http://www.ensdemaria.edu.co/" > <span class="letrablanca center">Click aquí acceder a la página web de la Institución</span></a><br>
-		                Institución Educativa Escuela Normal Superior de María | Dirección:  Carrera 52 No 41 48 Barrio: Santa Ana | Teléfono: 561 29 00 <br>
-		                Rionegro - Antioquia © Copyright Proyecto Pages <br>
-				    </p>
-					
-			    </footer>
-		    </div>
-
 		</div>
 
+		<script src="lib/angular/angular.min.js"></script>
+		<script src="lib/angular-route/angular-route.min.js"></script>
+		<script src="app.js"></script>
+		<script >
 
-		<script src="/lib/angular/angular.js"></script>
+		</script>
 
 	</body>
 </html>
