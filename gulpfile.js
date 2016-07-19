@@ -6,7 +6,7 @@ var gulp = require('gulp'),
     stylish = require('jshint-stylish'),
     livereload = require('gulp-livereload'),
     historyApiFallback = require('connect-history-api-fallback'),
-		mongoose = require('mongoose');
+	mongoose = require('mongoose');
 
 var Administrador = require('./app/models/Administrador.js');
 
@@ -16,7 +16,7 @@ var Administrador = require('./app/models/Administrador.js');
 				console.log('Error: Conectando a la BD' + err);
 			}else{
 
-        //DAtos de la persona encarga de administrar
+        //Datos de la persona encarga de administrar
 				var Adm = new Administrador({
 					Nombre : "Jeison",
 					Username : "yeison94",
