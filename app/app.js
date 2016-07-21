@@ -5,8 +5,9 @@ var app = angular.module('app', ['ngRoute']);
     		templateUrl: 'View/Principal.html',
     		controller: 'Ctrl'
     	})
-    	.when('/login/Administrador',{
-    		templateUrl: 'View/LoginAdmnistrador.html'
+    	.when('/loginAdministrador',{
+    		templateUrl: 'View/LoginAdmnistrador.html',
+			controller: 'ControllerAdmin'
     	})
     	.otherwise({
     		redirectTo: '/home'
@@ -16,3 +17,12 @@ var app = angular.module('app', ['ngRoute']);
     app.controller('Ctrl', function($scope){
     	$scope.Variable = "Si FUNCIONA";
     });
+
+	app.controller('ControllerAdmin', function($scope){
+
+		$scope.Adm = {};
+
+		$scope.verificarAdmi = function(){
+			window.alert($scope.Adm.user + $scope.Adm.password);
+		};
+	});
