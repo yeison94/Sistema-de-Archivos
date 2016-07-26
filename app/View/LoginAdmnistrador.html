@@ -7,15 +7,23 @@
 				<br>
 				<div class="form-group">
 					<label for="user">Username <span class="glyphicon glyphicon-user"></span></label>
-					<input type="text" class="form-control"" placeholder="User" data-ng-model="Adm.user">
+					<input type="text" class="form-control""  data-ng-model="Adm.user">
 				</div>
 				<div class="form-group">
 					<label for="password">Password <span class="glyphicon glyphicon-lock"></span></label>
-					<input type="password" class="form-control" placeholder="Password" data-ng-model = "Adm.password">
+					<input type="password" class="form-control"  data-ng-model = "Adm.password">
 				</div>
 				<button type="button" class="btn btn-primary" data-ng-click="verificarAdmi()">Ingresar</button>
+				<br>
+				<br>
+				<div class="alert alert-info" role="alert" data-ng-show="comprobar2">Por favor ingrese los datos</div>
+				<div class="alert alert-danger" role="alert" data-ng-show = "!comprobar && !comprobar2"> Datos incorrectos</div>
+				<div class="alert alert-success" role="alert" data-ng-show = "comprobar">Datos correctos</div>
 			</form>
 			</div>
 		</div>
 	</div>
 </div>
+
+
+ss

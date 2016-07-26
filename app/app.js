@@ -18,11 +18,33 @@ var app = angular.module('app', ['ngRoute']);
     	$scope.Variable = "Si FUNCIONA";
     });
 
-	app.controller('ControllerAdmin', function($scope){
+	app.controller('ControllerAdmin', function($scope, $http){
 
-		$scope.Adm = {};
+    //Usado para los avisos de datos ingresados correcto o incorrectos
+    $scope.comprobar = "";
+    $scope.comprobar2 = true;
 
 		$scope.verificarAdmi = function(){
-			window.alert($scope.Adm.user + $scope.Adm.password);
+
+      var req = {
+        method : 'POST',
+        url : "http://localhost:8888/AutentificacionAdmin",
+        headers: {
+          'Content-Type' : 'application/json'
+        },
+        data: $.param({ name : $scope.Adm.user , password : $scope.Adm.password})
+      };
+
+      $http(req)
+      .then(function(res){
+        //window.alert(res.data.query.NombreRsquest + " " + res.data.query.NombreDB);
+        console.log('Success', res.data);
+        $scope.comprobar = res.data.Respuesta;
+        $scope.comprobar2 = false;
+
+      });
+
+
+			//window.alert("$scope.Adm.user + $scope.Adm.password");
 		};
 	});
