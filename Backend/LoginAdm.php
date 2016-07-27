@@ -1,9 +1,12 @@
 <?php
 
-
+   header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
    header("Access-Control-Allow-Origin: *");
    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-   header('Content-Type: application/json; charset="UTF-8"');
+   header('Content-Type: application/json, charset="UTF-8"');
+
+
+
 
 
 function loginAdm(){
@@ -54,45 +57,61 @@ function loginAdm(){
 
 function interAdm(){
 
-$conexion = new MongoClient();
+  $conexion = new MongoClient();
 
-$coleccion = $conexion->Administrador->oferta;
+  $coleccion = $conexion->Administrador->oferta;
 
-if ($_SERVER['REQUEST_METHOD'] == "POST"){
-  parse_str(file_get_contents('php://input'), $post_vars);
+  if ($_SERVER['REQUEST_METHOD'] == "POST"){
+    parse_str(file_get_contents('php://input'), $post_vars);
 
-  // echo json_encode($post_vars);
+    // echo json_encode($post_vars);
 
-  $doc = array(
-    'Nombre' => $post_vars["nameProfesor"]  ,
-    'Asignatura' => $post_vars["Asignatura"]);
+    $doc = array(
+      'Nombre' => $post_vars["nameProfesor"]  ,
+      'Asignatura' => $post_vars["Asignatura"]);
 
-  $coleccion->insert($doc);
+    $coleccion->insert($doc);
 
-  $result2 = json_encode($doc);
+    $result2 = json_encode($doc);
 
-  echo $result2;
-}
+    echo $result2;
+  }
 
-if($_SERVER['REQUEST_METHOD'] == "GET"){
+  if($_SERVER['REQUEST_METHOD'] == "GET"){
 
-  $resulado = array();
+    $resulado = array();
 
-$cursor = $coleccion->find();
+    $cursor = $coleccion->find();
 
-foreach ($cursor as $doc) {
+    foreach ($cursor as $doc) {
 
-$aux = array('nombre' => $doc['Nombre'],
-             'asignatura' => $doc["Asignatura"] );
+    $aux = array('nombre' => $doc['Nombre'],
+                 'asignatura' => $doc["Asignatura"] );
 
-$resulado[] = $aux;
+    $resulado[] = $aux;
 
-}
+    }
 
-$resultado2 = json_encode($resulado);
+    $resultado2 = json_encode($resulado);
 
-echo $resultado2;
-}
+    echo $resultado2;
+  }
+
+  if($_SERVER['REQUEST_METHOD'] == "DELETE"){
+
+    parse_str(file_get_contents('php://input'), $delete_vars);
+
+    $coleccion->remove(array('Nombre' => $delete_vars["nameProfesor"], 'Asignatura' => $delete_vars["Asignatura"]),array('justOne' => false));
+
+    $resuo = array('Respuesta' => "Eliminado");
+    //$resuo = array('Nombre' => $delete_vars["nameProfesor"], 'Asignatura' => $delete_vars["Asignatura"]);
+
+    $ressl = json_encode($resuo);
+
+    echo $ressl;
+
+   }
+
 }
 
 //Para saber de donde procede la solicitud

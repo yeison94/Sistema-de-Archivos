@@ -98,4 +98,32 @@ var app = angular.module('app', ['ngRoute']);
       });
     }
 
+    $scope.eliminarProfesor = function(){
+
+      var req = {
+        method : 'DELETE',
+        url : "http://localhost:8888/interfaceAdministrador",
+        headers: {
+          'Content-Type' : 'application/json'
+        },
+        data: $.param({ nameProfesor : $scope.nombreProfesor , Asignatura : $scope.asignatura})
+      };
+
+      $http(req)
+      .then(function(res){
+        //window.alert(res.data.query.NombreRsquest + " " + res.data.query.NombreDB);
+        console.log('Success', res.data);
+
+          //$location.path('/interfaceAdministrador');
+          $route.reload();
+
+      });
+    }
+
+    $scope.cerrarSesion = function(){
+
+        $location.path('/loginAdministrador');
+
+    }
+
   });
