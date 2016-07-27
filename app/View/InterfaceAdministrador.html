@@ -14,7 +14,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-3 col-lg-offset-3">
+    <div class="col-lg-3 col-lg-offset-2">
       <div class="text-center"><h4>Nombre profesor:</h4></div>
       <br>
       <input type="text" class="form-control" data-ng-model="nombreProfesor">
@@ -24,12 +24,22 @@
       <br>
       <input type="text" class="form-control" data-ng-model="asignatura">
     </div>
+    <div class="col-lg-2">
+      <div class="text-center"><h4>Contraseña:</h4></div>
+      <br>
+      <input type="text" class="form-control" data-ng-model="contras">
+    </div>
   </div>
   <br>
   <br>
   <div class="row">
     <div class="col-lg-4 col-lg-offset-4">
-      <div class="alert alert-info" role="alert" >Por favor ingrese todos los datos para poder efectuar el cambio</div>
+      <div class="alert alert-info" role="alert" >
+        <p>
+          Para añadir profesores debe llenar los 3 campos, para eliminar solo  llene el campo del nombre y asignatura <br>
+          NOTA: Los profesor se logean con el nombre y la contraseña con el que fueron registrados por el administrador
+        </p>
+      </div>
     </div>
     <br>
     <br>

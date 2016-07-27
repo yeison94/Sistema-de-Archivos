@@ -64,6 +64,7 @@ var app = angular.module('app', ['ngRoute']);
 
     $scope.nombreProfesor = "";
     $scope.asignatura = "";
+    $scope.contras = "";
     $scope.oferta = [];
 
     //Peticion para obtener datos y llenar la tabla con la oferta academica
@@ -84,7 +85,7 @@ var app = angular.module('app', ['ngRoute']);
         headers: {
           'Content-Type' : 'application/json'
         },
-        data: $.param({ nameProfesor : $scope.nombreProfesor , Asignatura : $scope.asignatura})
+        data: $.param({ nameProfesor : $scope.nombreProfesor , Asignatura : $scope.asignatura, Contrasena : $scope.contras})
       };
 
       $http(req)

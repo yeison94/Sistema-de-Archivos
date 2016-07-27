@@ -16,7 +16,7 @@ function loginAdm(){
   $username_request = "";
   $password_request = "";
 
-//Obtener el user y password desde la BD
+  //Obtener el user y password desde la BD
   $mongo = new MongoClient();
 
   $db = $mongo->selectDB('Administrador');
@@ -68,7 +68,8 @@ function interAdm(){
 
     $doc = array(
       'Nombre' => $post_vars["nameProfesor"]  ,
-      'Asignatura' => $post_vars["Asignatura"]);
+      'Asignatura' => $post_vars["Asignatura"],
+    'Contrasena' => $post_vars["Contrasena"]);
 
     $coleccion->insert($doc);
 

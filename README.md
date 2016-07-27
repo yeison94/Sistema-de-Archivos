@@ -2,6 +2,8 @@ tener instalado  npm, node  , bower y gulp (npm install -g bower , npm install -
 
 Instalar php5 y el drive de mongo para php
 
+instalar plugin de Google Chrome: Allow-Control-Allow-Origin
+
 mirar si esta instalada la carpeta app/lib, sino esta crearla
 
 Instalar en sublime text 3  : EditorConfig
