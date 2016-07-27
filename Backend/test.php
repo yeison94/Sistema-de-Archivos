@@ -1,24 +1,37 @@
 <?php
-$url = 'http://localhost:8888';
 
-$datos_post = http_build_query(
-    array(
-        'name' => 'contenido',
-        'var2' => 'doh'
-    )
-);
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+header('Content-Type: application/json; charset="UTF-8"');
 
-$opciones = array('http' =>
-    array(
-        'method'  => 'POST',
-        'header'  => 'Content-type: application/json',
-        'content' => $datos_post
-    )
-);
+// $url = 'http://localhost:8888';
+//
+// $datos_post = http_build_query(
+//     array(
+//         'name' => 'contenido',
+//         'var2' => 'doh'
+//     )
+// );
+//
+// $opciones = array('http' =>
+//     array(
+//         'method'  => 'POST',
+//         'header'  => 'Content-type: application/json',
+//         'content' => $datos_post
+//     )
+// );
+//
+// $contexto = stream_context_create($opciones);
+//
+// $resultado = file_get_contents($url,false, $contexto);
+//
+// print_r($resultado);
 
-$contexto = stream_context_create($opciones);
+$prueba = array();
 
-$resultado = file_get_contents($url,false, $contexto);
+$prueba[] = ["hola","chao"];
+$prueba[] = ["chao"];
 
-print_r($resultado);
+print_r($prueba);
+
  ?>

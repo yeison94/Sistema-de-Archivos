@@ -11,4 +11,4 @@ Instalar las dependencias de node: $npm install
 Instalar las dependencias de bower: $bower install
 
 Ejecutar FrontEnd: $gulp
-Ejecutar BackEnd: $php -S localhost:8888/AutentificacionAdmin LoginAdm.php 
+Ejecutar BackEnd: $php -S localhost:8888 LoginAdm.php

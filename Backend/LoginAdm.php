@@ -52,6 +52,61 @@ function loginAdm(){
 
 }
 
-loginAdm();
+function interAdm(){
+
+$conexion = new MongoClient();
+
+$coleccion = $conexion->Administrador->oferta;
+
+if ($_SERVER['REQUEST_METHOD'] == "POST"){
+  parse_str(file_get_contents('php://input'), $post_vars);
+
+  // echo json_encode($post_vars);
+
+  $doc = array(
+    'Nombre' => $post_vars["nameProfesor"]  ,
+    'Asignatura' => $post_vars["Asignatura"]);
+
+  $coleccion->insert($doc);
+
+  $result2 = json_encode($doc);
+
+  echo $result2;
+}
+
+if($_SERVER['REQUEST_METHOD'] == "GET"){
+
+  $resulado = array();
+
+$cursor = $coleccion->find();
+
+foreach ($cursor as $doc) {
+
+$aux = array('nombre' => $doc['Nombre'],
+             'asignatura' => $doc["Asignatura"] );
+
+$resulado[] = $aux;
+
+}
+
+$resultado2 = json_encode($resulado);
+
+echo $resultado2;
+}
+}
+
+//Para saber de donde procede la solicitud
+
+if ($_SERVER['REQUEST_URI'] == '/AutentificacionAdmin'){
+
+  loginAdm();
+
+}elseif ($_SERVER['REQUEST_URI'] == '/interfaceAdministrador') {
+
+  interAdm();
+
+}else{
+  echo "NINGUNO";
+}
 
  ?>
