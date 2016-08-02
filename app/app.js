@@ -26,21 +26,55 @@ var app = angular.module('app', ['ngRoute']);
     	});
     }]);
 
-  app.directive('uploadFiles', function () {
+  // app.directive('uploadFiles', function () {
+  //   return {
+  //       scope: true,        //create a new scope
+  //       link: function (scope, el, attrs) {
+  //           el.bind('change', function (event) {
+  //               var files = event.target.files;
+  //               //iterate files since 'multiple' may be specified on the element
+  //               for (var i = 0; i < files.length; i++) {
+  //                   //emit event upward
+  //                   scope.$emit("seletedFile", { file: files[i] });
+  //               }
+  //           });
+  //       }
+  //   };
+  // });
+
+  app.directive('fileModel', ['$parse', function ($parse) {
     return {
-        scope: true,        //create a new scope
-        link: function (scope, el, attrs) {
-            el.bind('change', function (event) {
-                var files = event.target.files;
-                //iterate files since 'multiple' may be specified on the element
-                for (var i = 0; i < files.length; i++) {
-                    //emit event upward
-                    scope.$emit("seletedFile", { file: files[i] });
-                }
-            });
-        }
-    };
-  });
+       restrict: 'A',
+       link: function(scope, element, attrs) {
+          var model = $parse(attrs.fileModel);
+          var modelSetter = model.assign;
+
+          element.bind('change', function(){
+             scope.$apply(function(){
+                modelSetter(scope, element[0].files[0]);
+             });
+          });
+         }
+      };
+   }]);
+
+   app.service('fileUpload', ['$http', function ($http) {
+      this.uploadFileToUrl = function(file, uploadUrl){
+         var fd = new FormData();
+         fd.append('file', file);
+
+         $http.post(uploadUrl, fd, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': 'application/json'}
+         })
+
+         .success(function(){
+         })
+
+         .error(function(){
+         });
+      }
+   }]);
 
   //Servicio utilizado para compartir datos entre algunos controladores
   app.factory("ServicioDatos" ,function(){
@@ -204,51 +238,63 @@ var app = angular.module('app', ['ngRoute']);
 
   });
 
-  app.controller('controllerInterfaceProf',function($scope,ServicioDatos, $http){
+  app.controller('controllerInterfaceProf',function($scope,ServicioDatos, $http, fileUpload){
 
     $scope.servicio = ServicioDatos;
     console.log($scope.servicio.datosCompatidos);
 
-    //1. Used to list all selected files
-    $scope.files = [];
+    $scope.uploadFile = function(){
+       var file = $scope.myFile;
 
-    //2. a simple model that want to pass to Web API along with selected files
-    $scope.jsonData = {
-        name: "Jignesh Trivedi",
-        comments: "Multiple upload files"
+       console.log('file is ' );
+       console.dir(file);
+
+       var uploadUrl = "http://localhost:8888/interfaceProfesor";
+       fileUpload.uploadFileToUrl(file, uploadUrl);
     };
-    //3. listen for the file selected event which is raised from directive
-    $scope.$on("seletedFile", function (event, args) {
-        $scope.$apply(function () {
-            //add the file object to the scope's files collection
-            $scope.files.push(args.file);
-        });
-    });
 
-    //4. Post data and selected files.
-    $scope.save = function () {
-        $http({
-            method: 'POST',
-            url: "http://localhost:8888/interfaceProfesor",
-            headers: { 'Content-Type': 'application/json' },
 
-            transformRequest: function (data) {
-                var formData = new FormData();
-                formData.append("model", angular.toJson(data.model));
-                for (var i = 0; i < data.files.length; i++) {
-                    formData.append("file" + i, data.files[i]);
-                }
-                return formData;
-            },
-            data: { model: $scope.jsonData, files: $scope.files }
-        }).
-        success(function (data, status, headers, config) {
-            alert("success!");
-            console.log(data);
-        }).
-        error(function (data, status, headers, config) {
-            alert("failed!");
-        });
-    };
+
+    // //1. Used to list all selected files
+    // $scope.files = [];
+    //
+    // //2. a simple model that want to pass to Web API along with selected files
+    // $scope.jsonData = {
+    //     name: "Jignesh Trivedi",
+    //     comments: "Multiple upload files"
+    // };
+    // //3. listen for the file selected event which is raised from directive
+    // $scope.$on("seletedFile", function (event, args) {
+    //     $scope.$apply(function () {
+    //         //add the file object to the scope's files collection
+    //         $scope.files.push(args.file);
+    //     });
+    // });
+    //
+    // //4. Post data and selected files.
+    // $scope.save = function () {
+    //     $http({
+    //         method: 'POST',
+    //         url: "http://localhost:8888/interfaceProfesor",
+    //         headers: { 'Content-Type': 'application/json' },
+    //
+    //         transformRequest: function (data) {
+    //             var formData = new FormData();
+    //             formData.append("model", angular.toJson(data.model));
+    //             for (var i = 0; i < data.files.length; i++) {
+    //                 formData.append("file" + i, data.files[i]);
+    //             }
+    //             return formData;
+    //         },
+    //         data: { model: $scope.jsonData, files: $scope.files }
+    //     }).
+    //     success(function (data, status, headers, config) {
+    //         alert("success!");
+    //         console.log(data);
+    //     }).
+    //     error(function (data, status, headers, config) {
+    //         alert("failed!");
+    //     });
+    // };
 
   })
